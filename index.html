@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="manifest" href="manifest.json">
+    <title>口罩通知</title>
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap&subset=chinese-traditional" rel="stylesheet">
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="vendor/bootstrap/toast/toast.min.css">
+    <link href="css/simple-sidebar.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/mask.css">
+  </head>
+  <body>
+    <div class="d-flex" id="wrapper">
+      <div class="bg-dark" id="sidebar-wrapper">
+        <div class="text-light sidebar-heading">口罩通知</div>
+        <ul class="nav nav-pills flex-column" id="sidebar-nav" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link active" id="index-tab" href="#index" role="tab" data-toggle="pill" aria-controls="index" aria-selected="true">首頁</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="settings-tab" href="#settings" role="tab" data-toggle="pill" aria-controls="settings" aria-selected="false">設定</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="tutorial-tab" href="#tutorial" role="tab" data-toggle="pill" aria-controls="tutorial" aria-selected="false">教學</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="info-tab" href="#info" role="tab" data-toggle="pill" aria-controls="info" aria-selected="false">關於</a>
+          </li>
+        </ul>
+      </div>
+      
+      <div class="d-flex flex-column" id="page-content-wrapper">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-theme border-bottom flex-shrink-0" id="nav">
+          <button class="btn btn-theme" id="menu-toggle"><span class="navbar-toggler-icon"></span></button>
+          <div class="text-light sidebar-heading">口罩通知</div>
+        </nav>
+        
+        <div class="d-flex flex-grow-1" id="tab-content-wrapper">
+          <div id="mobileSidebarListener"></div>
+          <div class="tab-content" id="pills-tabContent">
+            <div class="tab-pane fade show active" id="index" role="tabpanel" aria-labelledby="index-tab">
+              <div class="container-fluid d-flex flex-column">
+                <div class="row d-block">
+                  <p class="text-right" id="fetchTime">更新時間: --</p>
+                  <p class="text-right" id="dataTime">資料時間: --</p>
+                </div>
+                <div class="row d-block flex-grow-1 table-wrapper">
+                  <table class="table" id="index-table">
+                    <thead class="thead-light">
+                      <tr>
+                        <th scope="col">店名</th>
+                        <th scope="col">成人口罩</th>
+                        <th scope="col">兒童口罩</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="row" id="colorInfo">
+                  <p class="col-12">顏色說明:</p>
+                  <div class="col table-dark">0 (售完)</div>
+                  <div class="col table-danger">&lt; 20 %</div>
+                  <div class="col table-warning">20 % ~ 50%</div>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="settings" role="tabpanel" aria-labelledby="settings-tab">
+              <div class="container-fluid d-flex flex-column">
+                <div class="row d-block" id="settings-form">
+                  <div class="input-group">
+                    <input class="form-control" type="number" name="idNum" id="idNum" min="0" max="9" placeholder="請輸入身分證最後一碼">
+                    <div class="input-group-append">
+                      <div class="input-group-text">
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="radio" name="idParity" id="idOdd" value="odd" disabled>
+                          <label class="form-check-label" for="idOdd">奇數</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="radio" name="idParity" id="idEven" value="even" disabled>
+                          <label class="form-check-label" for="idEven">偶數</label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group col">
+                      <select name="city" id="city" class="form-control">
+                        <option selected>請選擇縣市</option>
+                      </select>
+                    </div>
+                    <div class="form-group col">
+                      <select name="town" id="town" class="form-control">
+                        <option selected>請選擇區域</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="row d-block flex-grow-1 table-wrapper">
+                  <table class="table" id="settings-table">
+                    <thead class="thead-light">
+                      <tr>
+                        <th scope="col">藥事編號</th>
+                        <th scope="col">店名</th>
+                        <th scope="col">電話</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="row d-block">
+                  <button class="btn btn-theme btn-block" id="save-settings-btn">儲存</button>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="tutorial" role="tabpanel" aria-labelledby="tutorial-tab">
+              <div class="container-fluid d-flex flex-column">
+                3
+              </div>
+            </div>
+            <div class="tab-pane fade" id="info" role="tabpanel" aria-labelledby="info-tab">
+              <div class="container-fluid d-flex flex-column">
+                <button class="btn btn-theme" id="permitbtn">允許通知權限</button>
+                <button class="btn btn-theme" id="subscribebtn">註冊通知(dev)</button>
+                <button class="btn btn-theme" id="unsubscribebtn">取消通知(dev)</button>
+              </div>
+            </div>
+        </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="vendor/bootstrap/toast/toast.min.js"></script>
+    <script src="https://unpkg.com/idb@5.0.1/build/iife/index-min.js"></script>
+    <script>
+      $("#menu-toggle, #mobileSidebarListener").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+      });
+
+      $(`#sidebar-nav a[role="tab"]`).click(function(ev) {
+        if (document.body.getBoundingClientRect().width < 768) {
+          // mobile sidebar
+          $("#wrapper").toggleClass("toggled");
+        }
+      });
+
+      var isSafari = navigator.vendor && navigator.vendor.indexOf('Apple') > -1 &&
+                     navigator.userAgent &&
+                     navigator.userAgent.indexOf('CriOS') == -1 &&
+                     navigator.userAgent.indexOf('FxiOS') == -1;
+      var isiOS = /iPad|iPhone|iPod/.test(navigator.platform) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1)
+      if (isSafari || isiOS) {
+        $.toast({ title: 'Info', content: 'Safari 不支援推播通知。', type: 'info', delay: 2500 });
+      }
+    </script>
+
+    <script src="https://www.gstatic.com/firebasejs/7.8.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.8.1/firebase-messaging.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.8.1/firebase-functions.js"></script>
+    <script src="js/firebase-init.js"></script>
+    <script src="js/fcm-dev.js"></script>
+
+    <script src="js/config.js"></script>
+    <script src="js/util.js"></script>
+    <script src="js/home.js"></script>
+    <script src="js/settings.js"></script>
+  </body>
+</html>

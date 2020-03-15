@@ -1,0 +1,143 @@
+:root {
+    /* https://paletton.com/#uid=13h0u0ko9NfdjV9jdR6teIWE0yZ */
+    --theme-color: #34d4d0;
+    --theme-color-lighter: #8AEDE9;
+    --theme-color-light: #5AE0DB;
+    --theme-color-dark: #11C6C0;
+    --theme-color-darker: #00A49E;
+}
+
+html[lang="zh-Hant-TW"] body {
+    font-family: 'Consolas', 'Noto Sans TC', "微軟正黑體", "Microsoft JhengHei", sans-serif;
+}
+
+.flex-grow-1 {
+    flex: 1;
+}
+
+.row {
+    margin: 0;
+}
+
+.bg-theme {
+    background-color: var(--theme-color);
+}
+
+.table-wrapper {
+    overflow-y: auto;
+}
+
+table {
+    margin-bottom: 0;
+}
+
+#mobileSidebarListener {
+    position: absolute;
+    top: 0; right: 0; bottom: 0; left: 0;
+    z-index: -1;
+}
+
+#tab-content-wrapper {
+    overflow: hidden;
+    position: relative;
+}
+
+#sidebar-nav .nav-link.active {
+    background-color: var(--theme-color);
+}
+
+.btn-theme {
+    color: white;
+    background-color: var(--theme-color);
+    border-color: var(--theme-color-lighter);
+}
+
+nav .btn-theme {
+    background-color: var(--theme-color-dark);
+    border-color: var(--theme-color-dark);
+}
+
+.btn-theme:not(:disabled):hover {
+    background-color: var(--theme-color-dark);
+}
+
+.btn-theme:disabled:hover {
+    color: #FFF;
+    pointer-events: none;
+}
+
+nav .btn-theme:hover {
+    background-color: var(--theme-color-darker);
+}
+
+#sidebar-nav a.nav-link:not(.active) {
+    color: var(--theme-color-lighter);
+}
+
+#sidebar-nav a.nav-link:not(.active):hover {
+    color: var(--theme-color-light);
+}
+
+#nav .sidebar-heading {
+    padding: 0rem 1.25rem;
+    font-size: 1.2rem;
+}
+
+#pills-tabContent, #pills-tabContent .tab-pane,
+.tab-pane > .container-fluid {
+    height: 100%;
+    width: 100%;
+}
+
+/* index */
+#colorInfo p {
+    padding: 0;
+    margin: 0;
+}
+
+#colorInfo .col {
+    padding: 0 .25em;
+    text-align: center;
+}
+
+/* settings */
+#settings-form > * {
+    margin-top: .5em;
+    margin-bottom: 0;
+}
+
+.form-group {
+    margin-bottom: .5em;
+}
+
+#idNum + .input-group-append .form-check-inline:last-child {
+    margin-right: 0;
+}
+
+#index-table th, #settings-table th {
+    position: -webkit-sticky;
+    position: sticky;
+    top: -2px;
+}
+
+#settings-table tr {
+    cursor: pointer;
+}
+
+td span.address {
+    font-size: .75rem;
+}
+
+#save-settings-btn {
+    margin: .25em 0 .5em 0;
+}
+
+@media screen and (max-width: 768px) {
+    #settings-table thead th:first-child, #settings-table tbody tr td:first-child {
+        display: none;
+    }
+
+    #wrapper.toggled #mobileSidebarListener {
+        z-index: 4;
+    }
+}
